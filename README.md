@@ -1,1 +1,1 @@
-# Java
+This repository contains my personal notes for learning Java.
