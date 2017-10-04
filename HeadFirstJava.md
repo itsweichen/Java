@@ -71,9 +71,7 @@ Inheritance
 Polymorphism
 
 * Reference type can be a super class.
-* You can make polymorphic arrays, arguments, return types...
-
-
+* You can make polymorphic arrays, arguments, and return types.
 
 
 In what condition will a class not be able to be subclassed?
@@ -81,3 +79,17 @@ In what condition will a class not be able to be subclassed?
 1. There is no `private` class, but you can make it non-public (if you don't declare `public`). Only the class in the same package can subclass this non-public class.
 2. `final` stops a class from being subclassed.
 3. If a class has only `private` constructors, it can't be subclassed.
+
+Override vs. Overload
+
+* An overloaded method is just a different method that happens to have the same method name.
+
+### Interface and abstract classes
+
+Abstract class and abstract method
+
+* *Abstract class*: Some classes are needed for inheritance and polymorphism, but are not meant to be initialized (like Animal class). They are the classes that must be extended.
+* An *abstract method* means the method must be overriden. It has no body.
+* An abstract method cannot be in non-abstract class.
+* You *must* implement all abstract methods in a concret class. (Remember, the abstract methods have no body!)
+
