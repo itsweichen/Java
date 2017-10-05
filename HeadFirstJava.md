@@ -56,7 +56,8 @@ Array vs. ArrayList
 * ArrayList
   * Has methods you can call
   * Update size dynamically
-  * Primitives cannot be put into ArrayList
+  * Primitives cannot be put into ArrayList 
+    * Why? — think about how you implement ArrayList. What the parameter type would be?
   * Use parameterized types (e.g. `ArrayList<String>`)
 
 
@@ -92,4 +93,26 @@ Abstract class and abstract method
 * An *abstract method* means the method must be overriden. It has no body.
 * An abstract method cannot be in non-abstract class.
 * You *must* implement all abstract methods in a concret class. (Remember, the abstract methods have no body!)
+
+
+```java
+// Example 1
+private Animal[] animals = new Animals[5]; // Making an *array* object that holds Animal
+
+// Example 2
+ArrayList<Object> myDogArrayList = new ArrayList<Object>();
+Dog aDog = new Dog();
+myDogArrayList.add(aDog);
+
+Dog d = myDogArrayList.get(0); // This won't compile! It comes out as what you declared.
+
+// but you can cast it back
+if (d instanceof Dog) {
+    Dog dog = (Dog) d;
+}
+```
+
+
+
+
 
