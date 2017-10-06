@@ -85,7 +85,7 @@ Override vs. Overload
 
 * An overloaded method is just a different method that happens to have the same method name.
 
-### Interface and abstract classes
+### Abstract classes
 
 Abstract class and abstract method
 
@@ -114,5 +114,49 @@ if (d instanceof Dog) {
 
 
 
+> *Start from a question. And you'll appreciate the design.*
+>
+> Question: You have an Animal inheritence tree. What if you want some subclasses (like dogs, cats) to have "pet" behaviors?
 
+Why multiple inheritance is not a good thing?
 
+```
+      +---------------+
+      |DigitalRecorder|
+      +---------------+
+      | int i         |
+      | burn()        |
+      +-+----------+--+          CDBurner and DVDBurner both
+        |          |             inherit from DigitalRecorder.
+        |          |             They both override the method
++-------v-+      +-v--------+    and inherit the i instance.
+|CDBurner |      |DVDBurner |
++---------+      +----------+    Which one should ComboDrive use?
+| burn()  |      | burn()   |
++----+----+      +-----+----+
+     |                 |
+     +--------+--------+
+              |
+        +-----v-----+
+        |ComboDrive |
+        +-----------+
+        |           |
+        +-----------+
+```
+
+* Deadly Diamond of Death.
+  * You need extra rule to specify these special case.
+
+### Interface
+
+* Interface made all the methods abstract (avoided DDD confusion problem).
+* Interface methods are all `public` and `abstract` by default (you can type them optionally)
+* A class can implement multiple interfaces.
+* Interface is not tied to inheritance tree.
+
+### Know when to use them
+
+* Make a class that doesn't extend anything when your new class doesn't pass the IS-A test for any other type.
+* Make a subclass only when you need to make a *more specific* version of a class and need to override or add new behaviors
+* Use an abstract class when you want to define a *template* for a group of subclasses, and you have at least *some* implementation code that all subclasses could use. Make the class abstract when you want to guarantee that nobody can make objects of that type.
+* Use an interface when you want to define a *role* that other classes can play, regardless of where those classes are in the inheritance tree.
