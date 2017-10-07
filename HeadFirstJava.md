@@ -160,3 +160,17 @@ Why multiple inheritance is not a good thing?
 * Make a subclass only when you need to make a *more specific* version of a class and need to override or add new behaviors
 * Use an abstract class when you want to define a *template* for a group of subclasses, and you have at least *some* implementation code that all subclasses could use. Make the class abstract when you want to guarantee that nobody can make objects of that type.
 * Use an interface when you want to define a *role* that other classes can play, regardless of where those classes are in the inheritance tree.
+
+## Constructors and garbage collection
+
+Stack and Heap
+
+* Objects live in the heap.
+* Method invocations and local variables live in the stack.
+
+Constructos
+
+* Constructors are not inherited.
+* Constructors have no return type.
+* If you write your own constructor, be sure to write the no-arg one as well.
+* Instance variables are assigned a default value.
