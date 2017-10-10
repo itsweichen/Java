@@ -172,5 +172,18 @@ Constructos
 
 * Constructors are not inherited.
 * Constructors have no return type.
-* If you write your own constructor, be sure to write the no-arg one as well.
+* If you write your own constructor, write the no-arg one if possible (but you don't have to).
 * Instance variables are assigned a default value.
+
+
+* All the constructos in an object's *inheritance tree* must run when you make a new object. 
+  * Each subclass constructor immediately invokes its own superclass constructor. The subclass may depend on things from the super class. (You can't have a child before the parents exist.)
+  * You can manually call using `super();`. And it must be the first statement in each constructor.
+* What does `this()` mean? Can you have both `this()` and `super()` in the same constructor?
+
+Object lifespan
+
+* *life* and *scope*. Difference — think about a call stack `doStuff()` calls `go()`. How do you describe the local variable in `doStuff()`.
+
+
+
