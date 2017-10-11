@@ -186,4 +186,40 @@ Object lifespan
 * *life* and *scope*. Difference — think about a call stack `doStuff()` calls `go()`. How do you describe the local variable in `doStuff()`.
 
 
+## Numbers and statics
+
+**Static method**
+
+* Static method can't use non-static variables or methods.
+* It's not recommended to call static method using a reference variable
+
+**Static variable**
+
+* Shared as a single copy among all instances of the object.
+* All static variables in a class are initialized before any object of that class can be created.
+* Static final variables are contants — they should be all caps.
+
+Static initializer
+
+* A block of code that runs when a class is loaded, before any other code can use the class.
+  * It's a great place to initialize a static final variable.
+
+```java
+class Foo {
+  final static int x;
+  static {
+      x = 42;
+  }
+}
+```
+
+**Final**
+
+* Final *variable* — you can't *change* its value.
+* Final *method* — you can't *override* the method.
+* Final *class* — you can't *extend* the class.
+
+
+
+
 
