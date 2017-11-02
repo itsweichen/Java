@@ -168,7 +168,7 @@ Stack and Heap
 * Objects live in the heap.
 * Method invocations and local variables live in the stack.
 
-Constructos
+Constructors
 
 * Constructors are not inherited.
 * Constructors have no return type.
@@ -187,6 +187,8 @@ Object lifespan
 
 
 ## Numbers and statics
+
+### Static and Final
 
 **Static method**
 
@@ -220,6 +222,59 @@ class Foo {
 * Final *class* — you can't *extend* the class.
 
 
+### Autoboxing
 
+* Autoboxing works almost everywhere, even `i++`  — `i` can be either `int` or `Integer`
 
+```java
+// What will happen for this code
+public class TestBox {
+    
+    Integer i;
+    int j;
+    
+    public static void main(String args[]) {
+        TestBox t = new TestBox();
+        t.go();
+    }
+    
+    public void go() {
+        j = i;
+        System.out.println(j);
+        System.out.println(i);
+    }
+}
+```
+
+* Utility methods
+
+```java
+Integer.parseInt("2");
+Double.parseDouble("2.3");
+new Boolean("true").booleanValue();
+```
+
+### Format Specifiler
+
+```
+%[argument number][flags][width][.precision]type
+
+format("%,6.1f", 42.000);
+
+* %d - decimal
+* %f - floating point
+* %x - hexadecimal
+* %c - charater (eg. format("%c", 42) => *)
+
+* %tc/%tr... for printing date
+```
+
+> Why `String.format()` can accept unspecified number of arguments? 
+>
+> => vargas (variable argument list). It's said that you won't need this in a well designed system.
+
+### Date
+
+* For a timestamp of now, use `Date`
+* Everything else us `Calender` (new way)
 
