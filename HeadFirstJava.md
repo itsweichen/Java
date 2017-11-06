@@ -278,3 +278,142 @@ format("%,6.1f", 42.000);
 * For a timestamp of now, use `Date`
 * Everything else us `Calender` (new way)
 
+
+## Exceptions
+
+Hierarchy
+
+* Exception
+  * IOException
+  * Interruputed Exception
+  * RuntimeException
+    * NullPointerExceptino
+    * ClassCastException
+    * ...
+
+**Checked Exceptions** - *Compiler checked Exception*. Exceptions that are not subclass of RuntimeException are checked for by the compiler.
+
+> Most RuntimeExceptions come from a problem in your code logic, rather than a condition that fails at runtime in ways that you cannot predict or prevent.
+
+**Finally block**
+
+* finally will still run even if the try or catch block has a return statement.
+
+## File I/O
+
+###Serialization
+
+* Serialization saves the entire object graph.
+  * All objects in the object graph must be serializable (or `NotSerializableException`).
+
+```java
+FileOutputStream fileStream = new FIleOutputStream("MyGame.ser");
+
+ObjectOutputStream os = new ObjectOutputStream(fileStream);
+
+os.writeObject(obj1);
+os.writeObject(obj2);
+
+os.close(); // FileOutputStream and the file will close automatically
+```
+
+* Implement `Serialization` if you want your class to be serializable
+  * It's known as a *marker* or *tag* interface (it doesn't have any methods to implement)
+  * The subclass is automatically serializable (even without declaring) if any superclass is serializable. — This is how interfaces always work.
+* Mark an instance variable as `transient` if it can't (or shouldn't be saved)
+  * It will be `null` after deserialization and defaults for primitives.
+* Static variables, of course, are not serialized. They will have whaterver static variable its class *currently* has.
+
+### Deserialization
+
+```java
+FileInputStream fileStream = new FileInputStream("MyGrame.ser");
+
+ObjectInputStream os = new ObjectInputStream(fileStream);
+
+Object one = os.readObject();
+Object two = os.readObject();
+
+GameCharacter elf = (GameCharacter) one;
+GameCharacter troll = (GameCharacter) two;
+
+os.close();
+```
+
+* What happens when you have a serializable subclass of non-serializable superclass?
+  * The superclass constructor will run just as though a new object of that type were being created.
+* What JVM will do: read object from stream => determine class type from the object => find and load object's class (JVM will throw an exception if it can't) => A new object is given space on the heap => constructor for non-serializable class will run => instance variables are given the value from the serialized state (and transient variables...).
+
+### Streams
+
+**Connection streams** represent a connection to a source or destination (file, socket, etc). 
+
+**Chain streams** can't connect on their own and must be chained to a connection stream.
+
+* Often it takes at least two streams hooked together to do something useful — because *connection* streams are usually too low-level. e.g. `FileInputStreams` just writes bytes to a file.
+  * Why can't we make an easier way? Think good OO.
+  * Each class does *one* thing well. And it gives us flexibility.
+
+###Output a String
+
+```java
+FileWriter writer = new FileWriter("Foo.txt");
+writer.write("hello foo!");
+writer.close();
+```
+
+### `java.io.File` Class
+
+#### Writing a file
+
+```java
+// Make a File object representing an existing file (it does not represent the data in the file)
+File f = new File("MyCode.txt");
+
+// Make a new directory
+File dir = new File("Chapter7");
+dir.mkdir();
+
+// List the contents of a directory
+if (dir.isDirectory()) {
+  String[] dirContents = dir.list();
+  for (int i = 0; i < dirContents.length; i++) {
+    System.out.println(dirContents[i];
+  }
+}
+                       
+// Get the absolute path of a file or directory
+System.out.println(dir.getAbsolutePath());
+
+// Delete a file or dir
+boolean isDeleted = f.delete();
+```
+
+#### Buffers
+
+```java
+BufferedWriter writer = new BufferedWriter(new FileWriter(aFile));
+```
+
+* Only when buffer is full will the FileWriter write to the file on disk. — saving a lot of overhead of I/O to disk.
+* Calling `write.flush()` will let it send data immediately.
+
+#### Reading a file
+
+```java
+File myFile = new File("MyText.txt");
+FileReader fileReader = new FileReader(myFile);
+
+BufferedReader reader = new BufferedReader(fileReader)
+```
+
+
+
+
+
+
+
+
+
+
+
