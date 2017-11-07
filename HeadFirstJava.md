@@ -323,6 +323,7 @@ os.close(); // FileOutputStream and the file will close automatically
 * Mark an instance variable as `transient` if it can't (or shouldn't be saved)
   * It will be `null` after deserialization and defaults for primitives.
 * Static variables, of course, are not serialized. They will have whaterver static variable its class *currently* has.
+* `serailVersionUID` is needed if your class might evolve. 
 
 ### Deserialization
 
@@ -404,8 +405,63 @@ BufferedWriter writer = new BufferedWriter(new FileWriter(aFile));
 File myFile = new File("MyText.txt");
 FileReader fileReader = new FileReader(myFile);
 
-BufferedReader reader = new BufferedReader(fileReader)
+BufferedReader reader = new BufferedReader(fileReader);
+
+String line = null;
+
+while ((line = reader.readLine()) != null) {
+  System.out.println(line);
+}
+reader.close();
 ```
+
+## Threads
+
+> I'm skipping notes for networking part now.
+
+```java
+public class MyRunnable implements Runnable {
+  public void run(){
+    do();
+  }
+  public void do(){
+    //...
+  }
+}
+
+class ThreadTester {
+  public static void main(String[] args) {
+    Runnable threadJob = new MyRunnable();
+    Thread myThread = new Thread(threadJob);
+    
+    myThread.start();
+  }
+}
+```
+
+* Every thread in Java has its own call stack.
+* A thread needs a job to do stuff — a job is an instance of some class that implements `Runnable` interface.
+* The `Runnable` interface has only one `run()` method. It goes to the bottom of the new call stack (called first).
+* The call stack is created when you call `start()` method. The thread moves from NEW state to RUNNABLE state.
+* The thread is RUNNING when JVM's thread scheduler has selected it to be the currently-running thread. (#threads = #processors)
+* The thread also be BLOCKED when waiting or sleeping.
+* How thread scheduling works is not guaranteed. You can *help* influence it by letting threads to sleep periodically.
+* You can name a thread using `setName()` (helpful for debugging!)
+
+### Concurrency
+
+Mark your method `synchronized`.
+
+* Every object has a single lock with a single key.
+* If an object has synchronized methods, only one thread are allowed to access one of the object's synchronized methods.
+
+`synchronized` doesn't come for free
+
+1. It has a certain amount of overhead.
+2. It can slow your program down because it restricts concurrency.
+3. It can lead to deadlock — synchronize only the bare minimum that should be synchronized.
+
+How about static method? — Each loaed class has lock.
 
 
 
