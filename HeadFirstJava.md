@@ -463,6 +463,103 @@ Mark your method `synchronized`.
 
 How about static method? — Each loaed class has lock.
 
+## Generics
+
+Why — Generics means more type-safety. It will catch the problem in compile-time instead of runtime.
+
+Three Basics
+
+```java
+new ArrayList<Song>() // creating instances
+  
+List<Song> songList = new ArrayList<Song>() // declaring and assigning variables
+  
+void foo(List<Song> list) // declaring and invoking methods
+x.foo(songList)
+```
+
+**Generic Classes**
+
+```java
+public class ArrayList<E> extends AbstractList<E> implememts List<E> ... {
+  public boolean add(E o)
+  ...
+}
+```
+
+(It's convention to use `T` unless you're specifically writing a collection class.)
+
+**Generic Methods**
+
+```java
+// T declared in the method declaration
+public <T extends Animal> void takeThing(ArrayList<T> list)
+        ^                                          ^
+        
+// same as
+public void takeThing(ArrayList<? extends Animal> list)
+```
+
+* Note that it's NOT the same as
+
+  ```java
+  public void takeThing(ArrayList<Animal> list)
+  ```
+
+  And this is not the same as
+
+  ```java
+  public void takeThing(Animal[] list)
+  ```
+
+### Collections
+
+`Sort` method declaration
+
+```java
+public static <T extends Comparable<? super T>> void sort(List<T> list)
+```
+
+* In generics, "extends"  means “extends” or "implements" — meaning "is-a"
+  * This means that whatever class `T` that you want sort must implement Comparable, or you use another sort method and pass a Comparator.
+
+**Equality**
+
+* References are equal if they refer to the same object.
+  * Calling `hashCode()` will be the same.
+  * `==` compares the bits in variable. The bits will be the same if two references point to the same object.
+* Objects are equal if the `hashCode()` and `equals()` are overriden and returns the same.
+* The defualt `equals` is to do `==`.
+* How *HashSet* checks for duplicate
+  * First check its hashcode.
+  * Then check `equals()` for the objects that have the same hashcode.
+* `.equals()` => `hashCode()` same, but not the other way!! 
+  * That is, same hashcode != equal. It's because the hashcode "bucket" may overlap.
+
+> Skipping release part and rmi part for now.
+
+
+
+
+
+# Ten topics
+
+**#10 Bit Manipulation**
+
+**#9 Immutability**
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
