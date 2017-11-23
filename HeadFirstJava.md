@@ -548,19 +548,149 @@ public static <T extends Comparable<? super T>> void sort(List<T> list)
 
 **#9 Immutability**
 
+* String - JVM puts strings into a specific part of memory called "String Pool", and gabage collector won't go there.
+* Wrapper - there is no setter method for a wrapper object.
 
+**#8 Assertions**
 
+```java
+assert (height > 0);
+```
 
+* run with `-ea` will run the code with assertion, otherwise it won't run.
 
+**#7 Block Scope**
 
+**#6 Linked Invocations**
 
+e.g. `sb.delete(3,6).insert(2 "hmmm").deleteCharAt(1);`
 
+More common and useful example is to invoke an instance method of the main class without keeping a renferece to the instance of the class.
 
+```java
+class Foo{
+  public static void main(String[] args) {
+    new Foo().go();
+  }
+  void go() {
+    // ...
+  }
+}
+```
 
+**#5 Anonymous and Static Nested Classes**
 
+Static nested classes
 
+```java
+public class FooOuter {
+  static class BarInner {
+  	void sayIt() {
+    	System.out.println("method of a static inner class.");
+  	}
+  }
+}
 
+class Test {
+  public static void main (String[] args) {
+    FooOuter.BarInner foo = new FooOuter.BarInner();
+    // Just use the name of the class
+  }
+}
+```
 
+* Static nested class is just like a regular non-nested class, but since it's a member of the outer class, it can access any private members, but *only the static ones*.
+
+Anoynmous Inner classes
+
+* Non-static nested classes are often referred to as *inner class*. (Nested classes contain inner class and non-static nested classes.)
+
+```java
+button.addctionListner(new ActionListener() {
+  public void actionPerformed(ActionEvent ev) {
+    System.exist(0);
+  }
+});
+```
+
+**#4 Access Levels and Access Modifier**
+
+* public
+* protected - just like default (code in the same package has access), EXCEPT it also allows subclasses *outside* the package to inherit the protected thing.
+* default - only code within the same *package* as the class with the default thing can access the default thing
+* private - only code within the same *class* can access the private thing. Note that it means private to the class, not private to the object. One Dog can see another Dog object's private stuff, for example.
+
+**#3 String and StringBuffer/StringBuilder Methods**
+
+**#2 Multidimensional Arrays**
+
+**#1 Enumerations**
+
+Create a set of constant values to represent the only valid values for a variable.
+
+```java
+// Without Enum
+public static final int JERRY = 1;
+public static final int BOBBY = 2;
+public static final int PHIL = 3;
+
+...
+if (seletedBandMember == JERRY) {
+  ...
+}
+```
+
+* The problem of this is that `seletedBandMember` can be any number so it's easily broken.
+
+```java
+// Go with Enum
+public enum Members {JERRY, BOBBY, PHIL};
+public Members selectedBandMember; // Note that the type is `Members`
+
+...
+if (selectedBandMember == Members.JERRY) {
+  ...
+}
+```
+
+* It's actually just a special class, which implicitly extends `java.lang.Enum`
+
+More complicated usage
+
+```java
+public class HfjEnum {
+  enum Names {
+    JERRY("lead guitar") {public String sings() {
+      					return "plaintively";}
+    	}, /* with argument passed to the constructor and "constant-specific class bodies which will override the basic enum method"*/
+     
+    BOBBY("rhythm guitar") {public String sings() {
+      					return "hoarsely"; }
+    	},
+   	PHIL("bass") ;
+    
+    private String instrument;
+    
+    Names(String instrument) {
+      this.instrument = instrument;
+    }
+    public String getInstrument() {
+      return this.instrument;
+    }
+    public String sings() {
+      return "occasionally";
+    } 
+  }
+  
+  public static void main(String[] args) {
+    for (Names n: Names.values()) { // every enum comes with built-in values() method
+      System.out.print(n);
+      System.out.print(", instrument: " + n.getInstrument());
+      System.out.print(", sings: " + n.sings());
+    }
+  }
+}
+```
 
 
 
