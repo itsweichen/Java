@@ -1,4 +1,32 @@
-[TOC]
+Table of Contents
+=================
+
+   * [Basics](#basics)
+      * [General](#general)
+      * [Data Structure](#data-structure)
+      * [Polymorphism](#polymorphism)
+         * [Abstract classes](#abstract-classes)
+         * [Interface](#interface)
+         * [Know when to use them](#know-when-to-use-them)
+      * [Constructors and garbage collection](#constructors-and-garbage-collection)
+      * [Numbers and statics](#numbers-and-statics)
+         * [Static and Final](#static-and-final)
+         * [Autoboxing](#autoboxing)
+         * [Format Specifiler](#format-specifiler)
+         * [Date](#date)
+      * [Exceptions](#exceptions)
+      * [File I/O](#file-io)
+         * [Deserialization](#deserialization)
+         * [Streams](#streams)
+         * [java.io.File Class](#javaiofile-class)
+            * [Writing a file](#writing-a-file)
+            * [Buffers](#buffers)
+            * [Reading a file](#reading-a-file)
+      * [Threads](#threads)
+         * [Concurrency](#concurrency)
+      * [Generics](#generics)
+         * [Collections](#collections)
+   * [Ten topics](#ten-topics)
 
 # Basics
 
