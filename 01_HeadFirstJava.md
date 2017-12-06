@@ -329,7 +329,7 @@ Hierarchy
 
 ## File I/O
 
-###Serialization
+### Serialization
 
 * Serialization saves the entire object graph.
   * All objects in the object graph must be serializable (or `NotSerializableException`).
