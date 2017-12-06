@@ -304,7 +304,7 @@ format("%,6.1f", 42.000);
 ### Date
 
 * For a timestamp of now, use `Date`
-* Everything else us `Calender` (new way)
+* Everything else use `Calender` (new way)
 
 
 ## Exceptions
