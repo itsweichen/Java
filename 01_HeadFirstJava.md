@@ -304,7 +304,7 @@ format("%,6.1f", 42.000);
 ### Date
 
 * For a timestamp of now, use `Date`
-* Everything else us `Calender` (new way)
+* Everything else use `Calender` (new way)
 
 
 ## Exceptions
@@ -329,7 +329,7 @@ Hierarchy
 
 ## File I/O
 
-###Serialization
+### Serialization
 
 * Serialization saves the entire object graph.
   * All objects in the object graph must be serializable (or `NotSerializableException`).
