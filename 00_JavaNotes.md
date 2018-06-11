@@ -33,6 +33,14 @@ public class MyClass {
 }
 ```
 
+## Serialization
+
+### serialVersionUID
+
+* `serialVersionUID` is needed when you implement Serializable interface, or JDK will generate one for you based on algorithm [here](https://docs.oracle.com/javase/8/docs/platform/serialization/spec/class.html#a4100).
+* It will make sure that you use the same version to serialize and deserialize an object.
+* You can use JDK's `serialver` to generate serialVersionUID for a class.
+
 ## Others
 
 - try/catch have different scope.
