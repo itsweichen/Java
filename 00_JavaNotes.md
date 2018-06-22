@@ -41,6 +41,33 @@ public class MyClass {
 * It will make sure that you use the same version to serialize and deserialize an object.
 * You can use JDK's `serialver` to generate serialVersionUID for a class.
 
+## Blocks
+
+**Static Block**
+* Executed only once: the first time you make an object or the first time you access the static member of that class
+* Executed before constructor.
+
+```java
+class Test {
+  static {
+    ...
+  }
+}
+```
+
+**Initializer Block**
+* Executed whenere you make an object, before constructor.
+* Used to declaure/initialize the common part of various constructors of a class.
+
+```java
+public class Test {
+  {
+    ...
+  }
+}
+```
+
+
 ## Others
 
 - try/catch have different scope.
