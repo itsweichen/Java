@@ -322,7 +322,9 @@ Hierarchy
 
 **Checked Exceptions** - *Compiler checked Exception*. Exceptions that are not subclass of RuntimeException are checked for by the compiler.
 
-> Most RuntimeExceptions come from a problem in your code logic, rather than a condition that fails at runtime in ways that you cannot predict or prevent.
+A unchecked exception is the one that inherits RuntimeException. 
+
+> **When to use what?** If a client can reasonably be expected to recover from an exception, make it a checked exception. If a client cannot do anything to recover from the exception, make it an unchecked exception. Read more [here](https://docs.oracle.com/javase/tutorial/essential/exceptions/runtime.html).
 
 **Finally block**
 
