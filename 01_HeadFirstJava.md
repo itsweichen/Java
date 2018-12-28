@@ -188,6 +188,7 @@ Why multiple inheritance is not a good thing?
 * Make a subclass only when you need to make a *more specific* version of a class and need to override or add new behaviors
 * Use an abstract class when you want to define a *template* for a group of subclasses, and you have at least *some* implementation code that all subclasses could use. Make the class abstract when you want to guarantee that nobody can make objects of that type.
 * Use an interface when you want to define a *role* that other classes can play, regardless of where those classes are in the inheritance tree.
+  * Note that another benefit of using an interface is that a class can implement multiple interfaces while cannot extend multiple abstract classes.
 
 ## Constructors and garbage collection
 
