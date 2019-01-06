@@ -283,6 +283,8 @@ Double.parseDouble("2.3");
 new Boolean("true").booleanValue();
 ```
 
+* Note `==` does NOT do autoboxing for you. If you're comparing two Integers, you should use `equal()`. (JVM is caching values and `==` only works between -128 and 127)
+
 ### Format Specifiler
 
 ```
